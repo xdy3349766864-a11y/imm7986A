@@ -27,11 +27,18 @@ jobs:
           echo "CONFIG_TARGET_mediatek=y" >> .config
           echo "CONFIG_TARGET_mediatek_filogic=y" >> .config
           echo "CONFIG_TARGET_mediatek_filogic_DEVICE_clx_s20l=y" >> .config
+          
+          # WiFi 核心驱动与固件
           echo "CONFIG_PACKAGE_kmod-mt76=y" >> .config
           echo "CONFIG_PACKAGE_kmod-mt7915e=y" >> .config
           echo "CONFIG_PACKAGE_kmod-mt7986-firmware=y" >> .config
+          
+          # 无线认证与网页管理界面
           echo "CONFIG_PACKAGE_wpad-basic-mbedtls=y" >> .config
-          echo "CONFIG_PACKAGE_iwinfo=y" >> .config
+          echo "CONFIG_PACKAGE_luci=y" >> .config
+          echo "CONFIG_PACKAGE_luci-app-wifi=y" >> .config
+          
+          # 生成最终配置
           make defconfig
 
       - name: Download Feeds & Update
